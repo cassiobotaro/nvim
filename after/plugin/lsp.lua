@@ -49,7 +49,7 @@ lsp.set_preferences({
 	suggest_lsp_servers = false,
 })
 
-lsp.on_attach(function(_, bufnr)
+lsp.on_attach(function(client, bufnr)
 
 	local nmap = function(keys, func, desc)
 		if desc then
@@ -89,6 +89,17 @@ lsp.on_attach(function(_, bufnr)
 			vim.lsp.buf.formatting()
 		end
 	end, { desc = 'Format current buffer with LSP' })
+
+	-- format on save if supported
+	if client.supports_method("textDocument/formatting") then
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = vim.api.nvim_create_augroup("LspFormatting", { clear = true }),
+			buffer = bufnr,
+			callback = function()
+				vim.lsp.buf.format({ bufnr = bufnr })
+			end,
+		})
+	end
 
 	nmap('<leader>dg', vim.diagnostic.open_float)
 end)

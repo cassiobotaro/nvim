@@ -1,6 +1,6 @@
 require('nvim-treesitter.configs').setup {
 
-  ensure_installed = { 'c', 'lua', 'rust', 'help', 'python', 'java', 'vim', 'go', 'markdown', 'dockerfile', 'bash', 'json', 'help'},
+  ensure_installed = { 'c', 'lua', 'rust', 'help', 'python', 'java', 'vim', 'go', 'markdown', 'dockerfile', 'bash', 'json', 'help' },
 
   highlight = { enable = true },
   indent = { enable = true },
