@@ -74,6 +74,7 @@ require('packer').startup(function(use)
     },
   }
   use 'jose-elias-alvarez/null-ls.nvim'
+  use 'j-hui/fidget.nvim'
 
   if is_bootstrap then
     require('packer').sync()
