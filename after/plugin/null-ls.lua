@@ -10,6 +10,7 @@ local tools = {
   'rustfmt',
   'shfmt',
   'yamllint',
+  'protolint',
 }
 
 -- install tools
@@ -51,5 +52,7 @@ nls.setup {
     },
     diagnostics.shellcheck,
     actions.shellcheck,
+    formatting.protolint,
+    diagnostics.protolint,
   },
 }
