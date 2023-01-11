@@ -1,5 +1,5 @@
-require 'cassiobotaro.packer'
 require 'cassiobotaro.global'
+require 'cassiobotaro.lazy'
 require 'cassiobotaro.option'
 require 'cassiobotaro.remap'
 require 'cassiobotaro.autocommand'
