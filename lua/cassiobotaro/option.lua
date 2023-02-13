@@ -17,7 +17,6 @@ vim.o.ignorecase = true -- ignore case in search patterns
 vim.o.shiftround = true -- round indent to multiple of 'shiftwidth'.  Applies to > and < commands
 vim.o.updatetime = 300 -- if this many milliseconds nothing is typed the swap file will be written to disk. Also used for the CursorHold autocommand event
 vim.o.scrolloff = 12 -- minimal number of screen lines to keep above and below the cursor
-vim.o.smartindent = true -- do smart autoindenting when starting a new line
 vim.o.incsearch = true -- while typing a search command, show where the pattern, as it was typed so far, matches.
 vim.o.hlsearch = false -- set highlight on search
 vim.o.breakindent = true -- enable break indent
