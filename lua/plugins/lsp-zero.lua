@@ -26,12 +26,11 @@ return {
 
     lsp.ensure_installed {
       'bashls', -- bash
-      'sumneko_lua', -- lua
+      'lua_ls', -- lua
       'rust_analyzer', -- rust
       'gopls', -- go
       'pyright', -- python
       'taplo', -- toml
-      'jdtls', -- java
       'dockerls', -- docker
       'jsonls', -- json
       'yamlls', -- yaml
@@ -39,7 +38,7 @@ return {
     }
 
     -- Fix Undefined global 'vim'
-    lsp.configure('sumneko_lua', {
+    lsp.configure('lua_ls', {
       settings = {
         Lua = {
           diagnostics = {
