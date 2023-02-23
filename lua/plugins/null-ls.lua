@@ -1,28 +1,24 @@
 return {
   'jose-elias-alvarez/null-ls.nvim',
+  dependencies = {
+    { 'jay-babu/mason-null-ls.nvim' },
+    { 'williamboman/mason.nvim' },
+  },
   config = function()
     local nls = require 'null-ls'
-    local mason_registry = require 'mason-registry'
-
-    local tools = {
-      'stylua',
-      'black',
-      'prettier',
-      'shfmt',
-      'goimports',
-      'rustfmt',
-      'shfmt',
-      'yamllint',
-      'protolint',
+    require('mason-null-ls').setup {
+      ensure_installed = {
+        'stylua',
+        'black',
+        'prettier',
+        'shfmt',
+        'goimports',
+        'rustfmt',
+        'shfmt',
+        'yamllint',
+        'protolint',
+      },
     }
-
-    -- install tools
-    for _, f in pairs(tools) do
-      local pkg = mason_registry.get_package(f)
-      if not pkg:is_installed(f) then
-        pkg:install(f)
-      end
-    end
 
     -- configuring null-ls for formatters
     local formatting = nls.builtins.formatting
@@ -36,16 +32,8 @@ return {
         },
         formatting.shfmt,
         formatting.stylua.with {
-          extra_args = function(_)
-            local base_cfg = vim.fn.stdpath 'config' .. '/.stylua.toml'
-            local cfg = vim.fs.find('.stylua.toml', { upward = true })
-            if #cfg == 0 then
-              ---@diagnostic disable-next-line: cast-local-type
-              cfg = base_cfg
-            else
-              cfg = cfg[1]
-            end
-            return { '--config-path', cfg }
+          condition = function(utils)
+            return utils.root_has_file { 'stylua.toml', '.stylua.toml' }
           end,
         },
         formatting.goimports,
