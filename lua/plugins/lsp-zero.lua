@@ -35,6 +35,7 @@ return {
       'jsonls', -- json
       'yamlls', -- yaml
       'bufls', -- protobuf,
+      'ruff_lsp', -- python
     }
 
     -- Fix Undefined global 'vim'
