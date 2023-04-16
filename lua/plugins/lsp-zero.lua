@@ -1,111 +1,34 @@
 -- lsp
 return {
   'VonHeikemen/lsp-zero.nvim',
+  branch = 'v2.x',
   dependencies = {
     -- LSP Support
     { 'neovim/nvim-lspconfig' },
-    { 'williamboman/mason.nvim' },
+    {
+      'williamboman/mason.nvim',
+      build = function()
+        pcall(vim.cmd, 'MasonUpdate')
+      end,
+    },
     { 'williamboman/mason-lspconfig.nvim' },
 
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'L3MON4D3/LuaSnip' },
+    { 'rafamadriz/friendly-snippets' },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
     { 'saadparwaiz1/cmp_luasnip' },
-    { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-nvim-lua' },
-
-    -- Snippets
-    { 'L3MON4D3/LuaSnip' },
-    { 'rafamadriz/friendly-snippets' },
   },
   config = function()
-    local lsp = require 'lsp-zero'
-
-    lsp.preset 'recommended'
-
-    lsp.ensure_installed {
-      'bashls', -- bash
-      'lua_ls', -- lua
-      'rust_analyzer', -- rust
-      'gopls', -- go
-      'pyright', -- python
-      'taplo', -- toml
-      'dockerls', -- docker
-      'jsonls', -- json
-      'yamlls', -- yaml
-      'bufls', -- protobuf,
-      'ruff_lsp', -- python
-    }
-
-    -- Fix Undefined global 'vim'
-    lsp.configure('lua_ls', {
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { 'vim' },
-          },
-        },
-      },
-    })
-
-    lsp.configure('yamlls', {
-      settings = {
-        yaml = {
-          schemas = { kubernetes = 'globPattern' },
-        },
-      },
-    })
-
-    local cmp = require 'cmp'
-    local cmp_select = { behavior = cmp.SelectBehavior.Select }
-    local cmp_mappings = lsp.defaults.cmp_mappings {
-      ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-      ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-      ['<C-y>'] = cmp.mapping.confirm { select = true },
-      ['<C-Space>'] = cmp.mapping.complete(),
-    }
-
-    lsp.setup_nvim_cmp {
-      mapping = cmp_mappings,
-    }
-
-    lsp.set_preferences {
-      suggest_lsp_servers = false,
-    }
+    local lsp = require('lsp-zero').preset {}
 
     lsp.on_attach(function(client, bufnr)
-      local nmap = function(keys, func, desc)
-        if desc then
-          desc = 'LSP: ' .. desc
-        end
+      lsp.default_keymaps { buffer = bufnr }
 
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-      end
-
-      nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-      nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
-      nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-      nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-      nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-      nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-      nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-      nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
-      -- See `:help K` for why this keymap
-      nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-      nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-      -- Lesser used LSP functionality
-      nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-      nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-      nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-      nmap('<leader>wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end, '[W]orkspace [L]ist Folders')
-
-      -- Create a command `:Format` local to the LSP buffer
       vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         if vim.lsp.buf.format then
           vim.lsp.buf.format()
@@ -124,16 +47,58 @@ return {
           end,
         })
       end
-
-      nmap('<leader>dg', vim.diagnostic.open_float)
     end)
 
+    lsp.setup_servers { 'bashls', 'lua_ls', 'rust_analyzer', 'gopls', 'pyright', 'taplo', 'dockerls', 'jsonls', 'yamlls', 'bufls', 'ruff_lsp' }
+
+    require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+    require('lspconfig').yamlls.setup {
+      settings = {
+        yaml = {
+          schemas = { kubernetes = 'globPattern' },
+        },
+      },
+    }
+
     lsp.setup()
+
+    -- Make sure you setup `cmp` after lsp-zero
+
+    local cmp = require 'cmp'
+    local cmp_action = require('lsp-zero').cmp_action()
+
+    local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
+    cmp.setup {
+      sources = {
+        { name = 'path' },
+        { name = 'nvim_lsp' },
+        { name = 'buffer', keyword_length = 3 },
+        { name = 'luasnip', keyword_length = 2 },
+      },
+      mapping = {
+        -- `Enter` key to confirm completion
+        ['<CR>'] = cmp.mapping.confirm { select = false },
+        -- Ctrl+Space to trigger completion menu
+        ['<C-Space>'] = cmp.mapping.complete(),
+        -- Navigate between snippets
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        -- Navigate between snippet placeholder
+        ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+        ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+        -- Enable "Super TAB"
+        ['<Tab>'] = cmp_action.luasnip_supertab(),
+        ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+      },
+    }
 
     vim.diagnostic.config {
       virtual_text = true,
     }
 
     vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
+
+    require('luasnip.loaders.from_vscode').lazy_load()
   end,
 }
