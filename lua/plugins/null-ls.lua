@@ -13,10 +13,10 @@ return {
         'prettier',
         'shfmt',
         'goimports',
-        'rustfmt',
         'shfmt',
         'yamllint',
         'protolint',
+        'ruff_lsp',
       },
     }
 
@@ -44,6 +44,7 @@ return {
         diagnostics.shellcheck,
         actions.shellcheck,
         formatting.protolint,
+        formatting.ruff,
         diagnostics.protolint,
       },
     }
