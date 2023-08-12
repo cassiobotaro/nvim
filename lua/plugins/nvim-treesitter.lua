@@ -6,7 +6,22 @@ return {
   config = function()
     require('nvim-treesitter.configs').setup {
 
-      ensure_installed = { 'c', 'lua', 'rust', 'python', 'vim', 'go', 'markdown', 'dockerfile', 'bash', 'json', 'yaml', 'terraform' },
+      ensure_installed = {
+        'c',
+        'lua',
+        'rust',
+        'python',
+        'vim',
+        'go',
+        'markdown',
+        'dockerfile',
+        'bash',
+        'json',
+        'yaml',
+        'terraform',
+        'regex',
+        'markdown_inline',
+      },
 
       highlight = { enable = true },
       indent = { enable = true },
