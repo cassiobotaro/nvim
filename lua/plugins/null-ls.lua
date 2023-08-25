@@ -45,7 +45,6 @@ return {
         actions.shellcheck,
         formatting.protolint,
         formatting.ruff,
-        actions.ruff,
         diagnostics.protolint,
       },
     }
