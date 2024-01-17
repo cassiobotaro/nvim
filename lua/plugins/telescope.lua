@@ -1,33 +1,38 @@
 -- highly extendable fuzzy finder over lists
 return {
   'nvim-telescope/telescope.nvim',
-  branch = '0.1.x',
+  cmd = 'Telescope',
+  lazy = false,
+  version = false,
   dependencies = {
     { 'nvim-lua/plenary.nvim' },
+    { 'nvim-tree/nvim-web-devicons' },
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     { 'nvim-telescope/telescope-ui-select.nvim' },
   },
+  keys = {
+    { '<leader>?', ':Telescope oldfiles<cr>', desc = 'Find recently opened files' },
+    { '<leader><space>', ':Telescope buffers<cr>', desc = 'Find existing buffers' },
+    {
+      '<leader>/',
+      function()
+        require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+          winblend = 10,
+          previewer = false,
+        })
+      end,
+      desc = 'Fuzzily search in current buffer',
+    },
+    { '<leader>sf', ':Telescope find_files<cr>', desc = 'Search Files' },
+    { '<leader>sh', ':Telescope help_tags<cr>', desc = 'Search Help' },
+    { '<leader>sw', ':Telescope grep_string<cr>', desc = 'Search current Word' },
+    { '<leader>sg', ':Telescope live_grep<cr>', desc = 'Search by Grep' },
+    { '<leader>sd', ':Telescope diagnostics<cr>', desc = 'Search Diagnostics' },
+    { '<leader>st', ':Telescope git_files<cr>', desc = 'Search GiT Files' },
+  },
   config = function()
-    local builtin = require 'telescope.builtin'
     local telescope = require 'telescope'
     telescope.load_extension 'ui-select'
     telescope.load_extension 'fzf'
-    -- See `:help telescope.builtin`
-    vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
-    vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-    vim.keymap.set('n', '<leader>/', function()
-      -- You can pass additional configuration to telescope to change theme, layout, etc.
-      builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-        winblend = 10,
-        previewer = false,
-      })
-    end, { desc = '[/] Fuzzily search in current buffer]' })
-
-    vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-    vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-    vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-    vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-    vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-    vim.keymap.set('n', '<leader>st', builtin.git_files, { desc = '[S]earch Gi[T] Files' })
   end,
 }
