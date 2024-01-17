@@ -3,6 +3,7 @@ local api = vim.api
 -- don't auto comment new line
 api.nvim_create_autocmd('BufEnter', { command = [[set formatoptions-=cro]] })
 
+-- reopens the last cursor position
 api.nvim_create_autocmd('BufReadPost', {
   callback = function()
     local row, col = unpack(api.nvim_buf_get_mark(0, '"'))
