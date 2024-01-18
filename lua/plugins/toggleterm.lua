@@ -2,8 +2,9 @@
 return {
   'akinsho/toggleterm.nvim',
   version = '*',
-  config = true,
-  keys = {
-    { '<leader>t', '<cmd>ToggleTerm<cr>', desc = 'ToggleTerm' },
-  },
+  config = function()
+    require('toggleterm').setup {
+      open_mapping = [[<leader>t]],
+    }
+  end,
 }
