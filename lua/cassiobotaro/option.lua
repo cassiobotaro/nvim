@@ -1,8 +1,8 @@
 vim.o.number = true -- show line numbers
 vim.o.relativenumber = true -- show relative numbers
-vim.o.tabstop = 4 -- number of spaces that a <Tab> in the file counts for
-vim.o.softtabstop = 4 -- number of spaces that a <Tab> counts for while performing editing operations, like inserting a <Tab> or using <BS>
-vim.o.shiftwidth = 4 -- number of spaces to use for each step of (auto)indent
+vim.o.tabstop = 2 -- number of spaces that a <Tab> in the file counts for
+vim.o.softtabstop = 2 -- number of spaces that a <Tab> counts for while performing editing operations, like inserting a <Tab> or using <BS>
+vim.o.shiftwidth = 2 -- number of spaces to use for each step of (auto)indent
 vim.o.expandtab = true -- in Insert mode: Use the appropriate number of spaces to insert a <Tab>
 vim.o.swapfile = false -- don't use swapfile for a buffer
 vim.o.backup = false -- don't write backups for a buffer

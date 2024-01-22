@@ -18,14 +18,6 @@ require('lazy').setup {
   ui = {
     border = 'rounded',
   },
-  checker = {
-    enable = true,
-    notify = false,
-  },
-  chage_detection = {
-    enable = true,
-    notify = false,
-  },
   performance = {
     rtp = {
       -- disable some rtp plugins

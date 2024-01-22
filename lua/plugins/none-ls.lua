@@ -44,6 +44,9 @@ return {
         formatting.protolint,
         formatting.ruff,
         diagnostics.protolint,
+
+        actions.gitsigns,
+        actions.refactoring,
       },
     }
   end,
