@@ -16,6 +16,7 @@ return {
         'yamllint',
         'protolint',
         'ruff_lsp',
+        'shellcheck',
       },
     }
 
