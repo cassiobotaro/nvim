@@ -17,6 +17,14 @@ return {
     { 'hrsh7th/cmp-path' },
     { 'saadparwaiz1/cmp_luasnip' },
     { 'hrsh7th/cmp-nvim-lua' },
+    {
+      'folke/neodev.nvim',
+      config = function()
+        require('neodev').setup {
+          library = { plugins = { 'neotest', 'plenary.nvim' }, types = true, setup_jsonls = false },
+        }
+      end,
+    },
   },
   config = function()
     local lsp_zero = require 'lsp-zero'
@@ -120,9 +128,6 @@ return {
     vim.diagnostic.config {
       virtual_text = true,
     }
-
-    vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
-
     require('luasnip.loaders.from_vscode').lazy_load()
   end,
 }
