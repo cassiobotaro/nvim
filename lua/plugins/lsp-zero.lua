@@ -33,6 +33,18 @@ return {
       -- to learn the available actions
       lsp_zero.default_keymaps { buffer = bufnr }
 
+      -- custom keybindings
+      local map = function(keys, func, desc)
+        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = 'LSP: ' .. desc })
+      end
+      map('gd', require('telescope.builtin').lsp_definitions, 'Goto Definition')
+      map('gr', require('telescope.builtin').lsp_references, 'Goto References')
+      map('<leader>ca', vim.lsp.buf.code_action, 'Code Actions')
+      map('gI', vim.lsp.buf.implementation, 'Goto Implementation')
+      map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Goto Type Definitions')
+      map('ds', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
+      map('ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
+
       vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         if vim.lsp.buf.format then
           vim.lsp.buf.format()
@@ -128,6 +140,7 @@ return {
     vim.diagnostic.config {
       virtual_text = true,
     }
+
     require('luasnip.loaders.from_vscode').lazy_load()
   end,
 }

@@ -16,10 +16,10 @@ require('lazy').setup {
     { import = 'plugins' },
   },
   checker = {
-    enable = false,
+    enabled = false,
   },
   change_detection = {
-    enable = false,
+    enabled = false,
   },
   ui = {
     border = 'rounded',

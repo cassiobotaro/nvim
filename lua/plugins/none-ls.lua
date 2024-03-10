@@ -8,6 +8,7 @@ return {
     local nls = require 'null-ls'
     require('mason-null-ls').setup {
       ensure_installed = {
+        'bashls',
         'stylua',
         'prettier',
         'shfmt',
@@ -16,7 +17,6 @@ return {
         'yamllint',
         'protolint',
         'ruff_lsp',
-        'shellcheck',
       },
     }
 
@@ -40,12 +40,8 @@ return {
         diagnostics.yamllint.with {
           extra_args = { '-d', '{extends: relaxed, rules: {line-length: {max: 200}}}' },
         },
-        diagnostics.shellcheck,
-        actions.shellcheck,
         formatting.protolint,
-        formatting.ruff,
         diagnostics.protolint,
-
         actions.gitsigns,
         actions.refactoring,
       },

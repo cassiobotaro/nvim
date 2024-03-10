@@ -18,7 +18,6 @@ vim.o.shiftround = true -- round indent to multiple of 'shiftwidth'.  Applies to
 vim.o.updatetime = 100 -- if this many milliseconds nothing is typed the swap file will be written to disk. Also used for the CursorHold autocommand event
 vim.o.scrolloff = 12 -- minimal number of screen lines to keep above and below the cursor
 vim.o.incsearch = true -- while typing a search command, show where the pattern, as it was typed so far, matches.
-vim.opt.hlsearch = false -- highlight all matches on previous search pattern
 vim.o.breakindent = true -- enable break indent
 vim.opt.ruler = false -- Don't show the ruler
 vim.opt.showcmd = false -- Don't show the command in the last line
