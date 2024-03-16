@@ -29,3 +29,12 @@ api.nvim_create_autocmd('TextYankPost', {
 
 -- resize neovim split when terminal is resized
 api.nvim_command 'autocmd VimResized * wincmd ='
+
+-- Automatically open telescope if not explicitly opening a file
+api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+    if vim.fn.argv(0) == '' then
+      vim.cmd 'Telescope find_files'
+    end
+  end,
+})
