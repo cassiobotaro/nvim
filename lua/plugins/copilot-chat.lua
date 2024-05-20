@@ -1,31 +1,31 @@
 return {
-  {
-    'CopilotC-Nvim/CopilotChat.nvim',
-    opts = {
-      show_help = 'yes',         -- Show help text for CopilotChatInPlace, default: yes
-      debug = false,             -- Enable or disable debug mode, the log file will be in ~/.local/state/nvim/CopilotChat.nvim.log
-      disable_extra_info = 'no', -- Disable extra information (e.g: system prompt) in the response.
-      -- proxy = "socks5://127.0.0.1:3000", -- Proxies requests via https or socks.
+  'CopilotC-Nvim/CopilotChat.nvim',
+  build = function()
+    vim.notify "Please update the remote plugins by running ':UpdateRemotePlugins', then restart Neovim."
+  end,
+  config = true,
+  event = 'VeryLazy',
+  opts = {
+    window = {
+      layout = 'float',
     },
-    build = function()
-      vim.notify "Please update the remote plugins by running ':UpdateRemotePlugins', then restart Neovim."
-    end,
-    event = 'VeryLazy',
-    keys = {
-      { '<leader>cce', '<cmd>CopilotChatExplain<cr>', desc = 'CopilotChat - Explain code' },
-      { '<leader>cct', '<cmd>CopilotChatTests<cr>',   desc = 'CopilotChat - Generate tests' },
-      {
-        '<leader>ccv',
-        ':CopilotChatVisual',
-        mode = 'x',
-        desc = 'CopilotChat - Open in vertical split',
-      },
-      {
-        '<leader>ccx',
-        ':CopilotChatInPlace<cr>',
-        mode = 'x',
-        desc = 'CopilotChat - Run in-place code',
-      },
+  },
+  keys = {
+    {
+      '<leader>ccq',
+      function()
+        local input = vim.fn.input 'Quick Chat: '
+        if input ~= '' then
+          require('CopilotChat').ask(input, { selection = require('CopilotChat.select').buffer })
+        end
+      end,
+      desc = 'CopilotChat - Quick chat',
     },
+    { '<leader>cce', '<cmd>CopilotChatExplain<cr>', desc = 'CopilotChat - Explain code' },
+    { '<leader>cct', '<cmd>CopilotChatTests<cr>',   desc = 'CopilotChat - Generate tests' },
+    { '<leader>ccf', '<cmd>CopilotChatFix<cr>',     desc = 'CopilotChat - Fix code' },
+    { '<leader>ccc', '<cmd>CopilotChatCommit<cr>',  desc = 'CopilotChat - Commit code' },
+    { '<leader>ccr', '<cmd>CopilotChatReview<cr>',  desc = 'CopilotChat - Review code' },
+    { '<leader>cch', '<cmd>CopilotChat<cr>',        desc = 'CopilotChat - Chat' },
   },
 }
