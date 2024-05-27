@@ -31,6 +31,15 @@ return {
     { '<leader>st', ':Telescope git_files<cr>',   desc = 'Search Git Files' },
   },
   config = function()
+    require('telescope').setup {
+      extensions = {
+        wrap_results = true,
+        ['ui-select'] = {
+          require('telescope.themes').get_dropdown {},
+        },
+      },
+    }
+
     local telescope = require 'telescope'
     telescope.load_extension 'ui-select'
     telescope.load_extension 'fzf'
