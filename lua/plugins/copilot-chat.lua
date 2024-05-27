@@ -4,6 +4,7 @@ return {
     vim.notify "Please update the remote plugins by running ':UpdateRemotePlugins', then restart Neovim."
   end,
   config = true,
+  enabled = vim.g.copilot_enabled,
   event = 'VeryLazy',
   opts = {
     window = {
