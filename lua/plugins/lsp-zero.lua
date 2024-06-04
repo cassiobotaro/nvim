@@ -120,11 +120,11 @@ return {
     cmp.setup {
       formatting = cmp_format,
       sources = {
-        { name = 'path' },
         { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+        { name = 'path' },
+        { name = 'buffer' },
         { name = 'nvim_lua' },
-        { name = 'buffer',  keyword_length = 3 },
-        { name = 'luasnip', keyword_length = 2 },
       },
       mapping = cmp.mapping.preset.insert {
 
