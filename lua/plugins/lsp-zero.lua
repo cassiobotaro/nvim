@@ -86,7 +86,6 @@ return {
         'bashls',
         'lua_ls',
         'gopls',
-        'pyright',
         'taplo',
         'dockerls',
         'jsonls',
