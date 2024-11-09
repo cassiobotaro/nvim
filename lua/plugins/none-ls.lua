@@ -15,8 +15,7 @@ return {
         'goimports',
         'shfmt',
         'yamllint',
-        'protolint',
-        'ruff_lsp',
+        'ruff',
       },
     }
 
@@ -40,8 +39,6 @@ return {
         diagnostics.yamllint.with {
           extra_args = { '-d', '{extends: relaxed, rules: {line-length: {max: 200}}}' },
         },
-        formatting.protolint,
-        diagnostics.protolint,
         actions.gitsigns,
         actions.refactoring,
       },

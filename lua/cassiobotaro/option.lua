@@ -23,4 +23,4 @@ vim.opt.ruler = false -- Don't show the ruler
 vim.opt.showcmd = false -- Don't show the command in the last line
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 vim.opt.title = true -- set the title of window to the value of the titlestring
-vim.opt.completeopt = { 'menuone', 'noselect' } -- mostly just for cmp
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' } -- mostly just for cmp
