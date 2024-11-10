@@ -2,7 +2,7 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     -- LSP Support
-    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason.nvim',          config = true, cmd = 'Mason' },
     { 'williamboman/mason-lspconfig.nvim' },
 
     -- Autocompletion
@@ -11,8 +11,29 @@ return {
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
     { 'hrsh7th/cmp-nvim-lua' },
+
+    -- formatting
+    { "stevearc/conform.nvim" },
   },
   config = function()
+    local tools = {
+      'shfmt',
+      'shellcheck',
+      'yamllint',
+      'bash-language-server',
+      'stylua',
+      'prettier',
+      'shfmt',
+      'goimports',
+      'ruff',
+    }
+    for _, f in pairs(tools) do
+      local pkg = require('mason-registry').get_package(f)
+      if not pkg:is_installed(f) then
+        pkg:install(f)
+      end
+    end
+
     -- default capabilities
     local lspconfig_defaults = require('lspconfig').util.default_config
     lspconfig_defaults.capabilities = vim.tbl_deep_extend('force', lspconfig_defaults.capabilities,
@@ -38,6 +59,27 @@ return {
         vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
       end,
     })
+
+    require("conform").setup({
+      formatters_by_ft = {
+        json = { "prettier" },
+        markdown = { "prettier" },
+        toml = { "prettier" },
+        lua = { "stylua" },
+        yaml = { "yamllint" },
+        sh = { "shfmt", "shellcheck" },
+        go = { "goimports" },
+        python = { "ruff" },
+      },
+    })
+    require("conform").setup({
+      format_on_save = {
+        -- These options will be passed to conform.format()
+        timeout_ms = 500,
+        lsp_format = "fallback",
+      },
+    })
+
 
     -- format on save
     local buffer_autoformat = function(bufnr)
