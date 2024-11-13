@@ -13,7 +13,7 @@ return {
     { 'hrsh7th/cmp-nvim-lua' },
 
     -- formatting
-    { "stevearc/conform.nvim" },
+    { 'stevearc/conform.nvim' },
   },
   config = function()
     local tools = {
@@ -26,6 +26,7 @@ return {
       'shfmt',
       'goimports',
       'ruff',
+      'pyright',
     }
     for _, f in pairs(tools) do
       local pkg = require('mason-registry').get_package(f)
@@ -60,26 +61,25 @@ return {
       end,
     })
 
-    require("conform").setup({
+    require('conform').setup {
       formatters_by_ft = {
-        json = { "prettier" },
-        markdown = { "prettier" },
-        toml = { "prettier" },
-        lua = { "stylua" },
-        yaml = { "yamllint" },
-        sh = { "shfmt", "shellcheck" },
-        go = { "goimports" },
-        python = { "ruff" },
+        json = { 'prettier' },
+        markdown = { 'prettier' },
+        toml = { 'prettier' },
+        lua = { 'stylua' },
+        yaml = { 'yamllint' },
+        sh = { 'shfmt', 'shellcheck' },
+        go = { 'goimports' },
+        python = { 'ruff' },
       },
-    })
-    require("conform").setup({
+    }
+    require('conform').setup {
       format_on_save = {
         -- These options will be passed to conform.format()
         timeout_ms = 500,
-        lsp_format = "fallback",
+        lsp_format = 'fallback',
       },
-    })
-
+    }
 
     -- format on save
     local buffer_autoformat = function(bufnr)
