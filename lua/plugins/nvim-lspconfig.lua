@@ -55,6 +55,35 @@ return {
       end,
     })
 
+    local servers = {
+      bashls = {},
+      taplo = {},
+      dockerls = {},
+      jsonls = {},
+      yamlls = {
+        settings = {
+          yaml = {
+            schemas = { kubernetes = 'globPattern' },
+          },
+        },
+      },
+      lua_ls = {},
+      ruff = {},
+      pyright = {
+        settings = {
+          pyright = {
+            -- use ruff-lsp for organizing imports
+            disableOrganizeImports = true,
+          },
+          python = {
+            -- use ruff-lsp for analysis
+            analysis = { ignore = '*' },
+          },
+        },
+      },
+      gopls = {},
+    }
+
     require('mason').setup {
       ui = {
         icons = {
@@ -65,20 +94,15 @@ return {
       },
     }
     require('mason-lspconfig').setup {
-      ensure_installed = {
-        'bashls',
-        'taplo',
-        'dockerls',
-        'jsonls',
-        'yamlls',
-        'lua_ls',
-        'ruff',
-        'pyright',
-        'gopls',
-      },
+      ensure_installed = vim.tbl_keys(servers),
       handlers = {
         function(server_name)
-          require('lspconfig')[server_name].setup {}
+          local server_opts = servers[server_name]
+          server_opts.capabilities = lspconfig_defaults.capabilities
+          require('lspconfig')[server_name].setup {
+            settings = server_opts.settings,
+            capabilities = server_opts.capabilities,
+          }
         end,
       },
     }
