@@ -74,6 +74,7 @@ return {
           pyright = {
             -- use ruff-lsp for organizing imports
             disableOrganizeImports = true,
+            typeCheckingMode = 'off',
           },
           python = {
             -- use ruff-lsp for analysis
