@@ -11,8 +11,8 @@ return {
     { 'nvim-telescope/telescope-ui-select.nvim' },
   },
   keys = {
-    { '<leader>?',       ':Telescope oldfiles<cr>', desc = 'Find recently opened files' },
-    { '<leader><space>', ':Telescope buffers<cr>',  desc = 'Find existing buffers' },
+    { '<leader>?', ':Telescope oldfiles<cr>', desc = 'Find recently opened files' },
+    { '<leader><space>', ':Telescope buffers<cr>', desc = 'Find existing buffers' },
     {
       '<leader>/',
       function()
@@ -23,12 +23,13 @@ return {
       end,
       desc = 'Fuzzily search in current buffer',
     },
-    { '<leader>sf', ':Telescope find_files<cr>',  desc = 'Search Files' },
-    { '<leader>sh', ':Telescope help_tags<cr>',   desc = 'Search Help' },
+    { '<leader>sf', ':Telescope find_files<cr>', desc = 'Search Files' },
+    { '<leader>sh', ':Telescope help_tags<cr>', desc = 'Search Help' },
     { '<leader>sw', ':Telescope grep_string<cr>', desc = 'Search Current Word' },
-    { '<leader>sg', ':Telescope live_grep<cr>',   desc = 'Search by Grep' },
+    { '<leader>sg', ':Telescope live_grep<cr>', desc = 'Search by Grep' },
     { '<leader>sd', ':Telescope diagnostics<cr>', desc = 'Search Diagnostics' },
-    { '<leader>st', ':Telescope git_files<cr>',   desc = 'Search Git Files' },
+    { '<leader>st', ':Telescope git_files<cr>', desc = 'Search Git Files' },
+    { '<leader>sr', ':Telescope registers<cr>', desc = 'Search Registers' },
   },
   config = function()
     require('telescope').setup {
