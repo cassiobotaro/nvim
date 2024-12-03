@@ -3,6 +3,7 @@ return {
   build = function()
     vim.notify "Please update the remote plugins by running ':UpdateRemotePlugins', then restart Neovim."
   end,
+  branch = 'main',
   config = true,
   enabled = vim.g.copilot_enabled,
   event = 'VeryLazy',
@@ -23,10 +24,10 @@ return {
       desc = 'CopilotChat - Quick chat',
     },
     { '<leader>cce', '<cmd>CopilotChatExplain<cr>', desc = 'CopilotChat - Explain code' },
-    { '<leader>cct', '<cmd>CopilotChatTests<cr>',   desc = 'CopilotChat - Generate tests' },
-    { '<leader>ccf', '<cmd>CopilotChatFix<cr>',     desc = 'CopilotChat - Fix code' },
-    { '<leader>ccc', '<cmd>CopilotChatCommit<cr>',  desc = 'CopilotChat - Commit code' },
-    { '<leader>ccr', '<cmd>CopilotChatReview<cr>',  desc = 'CopilotChat - Review code' },
-    { '<leader>cch', '<cmd>CopilotChat<cr>',        desc = 'CopilotChat - Chat' },
+    { '<leader>cct', '<cmd>CopilotChatTests<cr>', desc = 'CopilotChat - Generate tests' },
+    { '<leader>ccf', '<cmd>CopilotChatFix<cr>', desc = 'CopilotChat - Fix code' },
+    { '<leader>ccc', '<cmd>CopilotChatCommit<cr>', desc = 'CopilotChat - Commit code' },
+    { '<leader>ccr', '<cmd>CopilotChatReview<cr>', desc = 'CopilotChat - Review code' },
+    { '<leader>cch', '<cmd>CopilotChat<cr>', desc = 'CopilotChat - Chat' },
   },
 }
