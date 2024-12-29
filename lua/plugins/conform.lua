@@ -6,7 +6,7 @@ return {
     require('conform').setup {
       formatters_by_ft = {
         lua = { 'stylua' },
-        python = { 'ruff_format', 'ruff_organize_imports' },
+        python = { 'ruff_format', 'ruff_organize_imports', 'ruff_fix' },
         go = { 'goimports' },
         bash = { 'shfmt' },
         yaml = { 'prettier' },
