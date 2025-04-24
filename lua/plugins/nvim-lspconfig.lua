@@ -59,7 +59,7 @@ return {
         vim.keymap.set('n', 'gr', builtin.lsp_references, opts)
         vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
         vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-        vim.keymap.set('n', 'ds', builtin.lsp_document_symbols, opts)
+        vim.keymap.set('n', 'gy', builtin.lsp_document_symbols, opts)
         vim.keymap.set('n', 'ws', builtin.lsp_dynamic_workspace_symbols, opts)
         vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
         vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
