@@ -1,13 +1,16 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    { 'williamboman/mason.nvim', config = true, cmd = 'Mason' },
-    { 'williamboman/mason-lspconfig.nvim' },
-    { 'hrsh7th/cmp-nvim-lsp' },
+    {
+      'mason-org/mason.nvim',
+      config = true,
+      cmd = 'Mason',
+    },
     { 'hrsh7th/nvim-cmp' },
     { 'hrsh7th/cmp-buffer' },
-    { 'hrsh7th/cmp-path' },
+    { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-nvim-lua' },
+    { 'hrsh7th/cmp-path' },
     { 'onsails/lspkind-nvim' },
     {
       'folke/lazydev.nvim',
@@ -22,26 +25,27 @@ return {
     },
   },
   config = function()
-    -- installing tools
-    local tools = {
+    -- installing linters/lsp/formatters
+    local packages = {
+      'bash-language-server',
+      'dockerfile-language-server',
+      'goimports',
+      'gopls',
+      'json-lsp',
+      'lua-language-server',
+      'pyright',
+      'ruff',
+      'shellcheck',
       'shfmt',
       'stylua',
-      'goimports',
-      'prettier',
-      'shellcheck',
-      'yamllint',
+      'yaml-language-server',
     }
-    for _, f in pairs(tools) do
-      local pkg = require('mason-registry').get_package(f)
-      if not pkg:is_installed(f) then
-        pkg:install(f)
+    local registry = require 'mason-registry'
+    for _, pkg in pairs(packages) do
+      if not registry.is_installed(pkg) then
+        registry.get_package(pkg):install()
       end
     end
-
-    -- Add cmp_nvim_lsp capabilities settings to lspconfig
-    -- This should be executed before you configure any language server
-    local lspconfig_defaults = require('lspconfig').util.default_config
-    lspconfig_defaults.capabilities = vim.tbl_deep_extend('force', lspconfig_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     -- This is where you enable features that only work
     -- if there is a language server active in the file
@@ -67,36 +71,6 @@ return {
       end,
     })
 
-    local servers = {
-      bashls = {},
-      taplo = {},
-      dockerls = {},
-      jsonls = {},
-      yamlls = {
-        settings = {
-          yaml = {
-            schemas = { kubernetes = 'globPattern' },
-          },
-        },
-      },
-      lua_ls = {},
-      ruff = {},
-      pyright = {
-        settings = {
-          pyright = {
-            -- use ruff-lsp for organizing imports
-            disableOrganizeImports = true,
-            typeCheckingMode = 'off',
-          },
-          python = {
-            -- use ruff-lsp for analysis
-            analysis = { ignore = '*' },
-          },
-        },
-      },
-      gopls = {},
-    }
-
     require('mason').setup {
       ui = {
         icons = {
@@ -106,18 +80,17 @@ return {
         },
       },
     }
-    require('mason-lspconfig').setup {
-      ensure_installed = vim.tbl_keys(servers),
-      handlers = {
-        function(server_name)
-          local server_opts = servers[server_name]
-          server_opts.capabilities = lspconfig_defaults.capabilities
-          require('lspconfig')[server_name].setup {
-            settings = server_opts.settings,
-            capabilities = server_opts.capabilities,
-          }
-        end,
-      },
+
+    vim.lsp.enable {
+      'bashls',
+      'dockerls',
+      'gopls',
+      'jsonls',
+      'lua_ls',
+      'pyright',
+      'ruff',
+      'shfmt',
+      'yamlls',
     }
 
     ---
@@ -164,7 +137,7 @@ return {
 
           -- The function below will be called before any actual modifications from lspkind
           -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-          before = function(entry, vim_item)
+          before = function(_, vim_item)
             -- ...
             return vim_item
           end,
@@ -175,6 +148,7 @@ return {
     vim.diagnostic.config {
       severity_sort = true,
       virtual_text = false,
+      virtual_lines = { current_line = true },
       signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = '✘',

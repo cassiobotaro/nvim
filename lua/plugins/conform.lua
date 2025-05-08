@@ -9,9 +9,6 @@ return {
         python = { 'ruff_format', 'ruff_organize_imports', 'ruff_fix' },
         go = { 'goimports' },
         bash = { 'shfmt' },
-        json = { 'prettier' },
-        markdown = { 'prettier' },
-        toml = { 'prettier' },
       },
       format_on_save = {
         -- These options will be passed to conform.format()
