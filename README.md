@@ -8,7 +8,7 @@
 
 **Prerequisites**
 
-- Neovim 0.10+
+- Neovim 0.11+
 
 Steps:
 
