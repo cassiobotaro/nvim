@@ -89,7 +89,6 @@ return {
       'lua_ls',
       'pyright',
       'ruff',
-      'shfmt',
       'yamlls',
     }
 
