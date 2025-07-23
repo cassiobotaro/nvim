@@ -3,6 +3,7 @@ return {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
     event = 'InsertEnter',
+    enabled = vim.g.copilot_enabled,
     build = ':Copilot auth',
     opts = {
       suggestion = {
