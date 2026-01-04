@@ -34,6 +34,7 @@ return {
       'shfmt',
       'stylua',
       'yaml-language-server',
+      'typescript-language-server',
     }
     local registry = require 'mason-registry'
     for _, pkg in pairs(packages) do
@@ -85,6 +86,7 @@ return {
       'pyright',
       'ruff',
       'yamlls',
+      'ts_ls',
     }
 
     vim.diagnostic.config {
