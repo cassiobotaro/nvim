@@ -20,29 +20,6 @@ return {
     },
   },
   config = function()
-    -- installing linters/lsp/formatters
-    local packages = {
-      'bash-language-server',
-      'dockerfile-language-server',
-      'goimports',
-      'gopls',
-      'json-lsp',
-      'lua-language-server',
-      'pyright',
-      'ruff',
-      'shellcheck',
-      'shfmt',
-      'stylua',
-      'yaml-language-server',
-      'typescript-language-server',
-    }
-    local registry = require 'mason-registry'
-    for _, pkg in pairs(packages) do
-      if not registry.is_installed(pkg) then
-        registry.get_package(pkg):install()
-      end
-    end
-
     -- This is where you enable features that only work
     -- if there is a language server active in the file
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -76,6 +53,29 @@ return {
         },
       },
     }
+
+    -- installing linters/lsp/formatters
+    local packages = {
+      'bash-language-server',
+      'dockerfile-language-server',
+      'goimports',
+      'gopls',
+      'json-lsp',
+      'lua-language-server',
+      'pyright',
+      'ruff',
+      'shellcheck',
+      'shfmt',
+      'stylua',
+      'yaml-language-server',
+      'typescript-language-server',
+    }
+    local registry = require 'mason-registry'
+    for _, pkg in pairs(packages) do
+      if not registry.is_installed(pkg) then
+        registry.get_package(pkg):install()
+      end
+    end
 
     vim.lsp.enable {
       'bashls',
