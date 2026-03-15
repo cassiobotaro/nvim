@@ -38,7 +38,9 @@ return {
         vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
         vim.keymap.set('n', 'gy', builtin.lsp_document_symbols, opts)
         vim.keymap.set('n', 'ws', builtin.lsp_dynamic_workspace_symbols, opts)
-        vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+        vim.keymap.set({ 'n', 'x' }, '<F3>', function()
+          require('conform').format { async = true, lsp_format = 'fallback' }
+        end, opts)
         vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
         vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
       end,
@@ -62,6 +64,7 @@ return {
       'gopls',
       'json-lsp',
       'lua-language-server',
+      'prettier',
       'pyright',
       'ruff',
       'shellcheck',

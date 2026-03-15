@@ -23,6 +23,7 @@ require('lazy').setup {
   },
   performance = {
     rtp = {
+      paths = { vim.fn.stdpath 'data' .. '/site/' },
       -- disable some rtp plugins
       disabled_plugins = {
         'gzip',
