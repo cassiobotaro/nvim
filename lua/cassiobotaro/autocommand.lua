@@ -21,6 +21,9 @@ api.nvim_create_autocmd('BufReadPost', {
 -- remove trailing whitespace on save
 api.nvim_create_autocmd('BufWritePre', {
   callback = function()
+    if not vim.bo.modifiable or vim.bo.buftype ~= '' then
+      return
+    end
     vim.cmd ':%s/\\s\\+$//e'
   end,
 })
@@ -44,8 +47,10 @@ api.nvim_create_autocmd('VimResized', {
 -- Automatically open telescope if not explicitly opening a file
 api.nvim_create_autocmd('VimEnter', {
   callback = function()
-    if vim.fn.argv(0) == '' then
-      vim.cmd 'Telescope find_files'
+    if vim.fn.argc() == 0 then
+      vim.schedule(function()
+        require('telescope.builtin').find_files()
+      end)
     end
   end,
 })
