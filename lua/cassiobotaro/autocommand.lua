@@ -44,12 +44,12 @@ api.nvim_create_autocmd('VimResized', {
   end,
 })
 
--- Automatically open telescope if not explicitly opening a file
+-- Automatically open fzf-lua if not explicitly opening a file
 api.nvim_create_autocmd('VimEnter', {
   callback = function()
     if vim.fn.argc() == 0 then
       vim.schedule(function()
-        require('telescope.builtin').find_files()
+        require('fzf-lua').files()
       end)
     end
   end,

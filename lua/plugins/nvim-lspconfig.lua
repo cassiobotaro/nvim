@@ -27,17 +27,17 @@ return {
       callback = function(event)
         local opts = { buffer = event.buf }
 
-        local builtin = require 'telescope.builtin'
+        local fzf = require 'fzf-lua'
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-        vim.keymap.set('n', 'gd', builtin.lsp_definitions, opts)
+        vim.keymap.set('n', 'gd', fzf.lsp_definitions, opts)
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-        vim.keymap.set('n', 'go', builtin.lsp_type_definitions, opts)
-        vim.keymap.set('n', 'gr', builtin.lsp_references, opts)
+        vim.keymap.set('n', 'go', fzf.lsp_typedefs, opts)
+        vim.keymap.set('n', 'gr', fzf.lsp_references, opts)
         vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
         vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
-        vim.keymap.set('n', 'gy', builtin.lsp_document_symbols, opts)
-        vim.keymap.set('n', 'ws', builtin.lsp_dynamic_workspace_symbols, opts)
+        vim.keymap.set('n', 'gy', fzf.lsp_document_symbols, opts)
+        vim.keymap.set('n', 'ws', fzf.lsp_live_workspace_symbols, opts)
         vim.keymap.set({ 'n', 'x' }, '<F3>', function()
           require('conform').format { async = true, lsp_format = 'fallback' }
         end, opts)

@@ -4,6 +4,6 @@ return {
   keys = {
     { '-', '<cmd>Oil<cr>', desc = 'Toggle file explorer' },
   },
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 'echasnovski/mini.icons' },
   config = true,
 }
