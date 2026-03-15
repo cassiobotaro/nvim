@@ -1,6 +1,7 @@
 -- fast fuzzy finder using the fzf binary (requires fzf installed on the system)
 return {
   'ibhagwan/fzf-lua',
+  event = 'VeryLazy',
   dependencies = { 'echasnovski/mini.icons' },
   config = function()
     local fzf = require 'fzf-lua'
