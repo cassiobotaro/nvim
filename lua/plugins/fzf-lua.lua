@@ -4,9 +4,6 @@ return {
   dependencies = { 'echasnovski/mini.icons' },
   config = function()
     local fzf = require 'fzf-lua'
-    fzf.setup { 'telescope' } -- telescope-like UI preset
-
-    -- replace vim.ui.select (replaces telescope-ui-select)
     fzf.register_ui_select()
   end,
   keys = {
