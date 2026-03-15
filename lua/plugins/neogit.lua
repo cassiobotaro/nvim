@@ -1,6 +1,6 @@
 -- git
 return {
-  'TimUntersberger/neogit',
+  'NeogitOrg/neogit',
   dependencies = 'nvim-lua/plenary.nvim',
   cmd = 'Neogit',
   keys = {

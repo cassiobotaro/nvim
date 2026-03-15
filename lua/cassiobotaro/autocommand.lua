@@ -1,7 +1,12 @@
 local api = vim.api
 
 -- don't auto comment new line
-api.nvim_create_autocmd('BufEnter', { command = [[set formatoptions-=cro]] })
+api.nvim_create_autocmd('FileType', {
+  pattern = '*',
+  callback = function()
+    vim.opt_local.formatoptions:remove { 'c', 'r', 'o' }
+  end,
+})
 
 -- reopens the last cursor position
 api.nvim_create_autocmd('BufReadPost', {
@@ -30,7 +35,11 @@ api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- resize neovim split when terminal is resized
-api.nvim_command 'autocmd VimResized * wincmd ='
+api.nvim_create_autocmd('VimResized', {
+  callback = function()
+    vim.cmd 'wincmd ='
+  end,
+})
 
 -- Automatically open telescope if not explicitly opening a file
 api.nvim_create_autocmd('VimEnter', {

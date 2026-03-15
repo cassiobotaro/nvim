@@ -28,21 +28,21 @@ return {
         local opts = { buffer = event.buf }
 
         local builtin = require 'telescope.builtin'
-        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
         vim.keymap.set('n', 'gd', builtin.lsp_definitions, opts)
-        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-        vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
         vim.keymap.set('n', 'go', builtin.lsp_type_definitions, opts)
         vim.keymap.set('n', 'gr', builtin.lsp_references, opts)
-        vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-        vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+        vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
+        vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
         vim.keymap.set('n', 'gy', builtin.lsp_document_symbols, opts)
         vim.keymap.set('n', 'ws', builtin.lsp_dynamic_workspace_symbols, opts)
         vim.keymap.set({ 'n', 'x' }, '<F3>', function()
           require('conform').format { async = true, lsp_format = 'fallback' }
         end, opts)
-        vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-        vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+        vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, opts)
+        vim.keymap.set('n', 'gl', vim.diagnostic.open_float)
       end,
     })
 
