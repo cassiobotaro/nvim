@@ -24,7 +24,9 @@ api.nvim_create_autocmd('BufWritePre', {
     if not vim.bo.modifiable or vim.bo.buftype ~= '' then
       return
     end
+    local cursor = api.nvim_win_get_cursor(0)
     vim.cmd ':%s/\\s\\+$//e'
+    api.nvim_win_set_cursor(0, cursor)
   end,
 })
 

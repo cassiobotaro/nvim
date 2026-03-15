@@ -1,6 +1,6 @@
 return {
   'stevearc/conform.nvim',
-  event = { 'BufReadPost' },
+  event = { 'BufReadPost', 'BufNewFile' },
   cmd = { 'ConformInfo' },
   config = function()
     require('conform').setup {

@@ -1,6 +1,6 @@
 local map = vim.keymap.set
-map('v', 'J', [[:m '>+1<CR>gv=gv]], { desc = 'Move lines up respecting identation' })
-map('v', 'K', [[:m '<-2<CR>gv=gv]], { desc = 'Move lines down respecting identation' })
+map('v', 'J', [[:m '>+1<CR>gv=gv]], { desc = 'Move lines up respecting indentation' })
+map('v', 'K', [[:m '<-2<CR>gv=gv]], { desc = 'Move lines down respecting indentation' })
 map('n', 'J', [[mzJ`z]], { desc = 'Join lines without move cursor' })
 map('n', '<C-d>', [[<C-d>zz]], { desc = 'Scroll window downwards in the buffer' })
 map('n', '<C-u>', [[<C-u>zz]], { desc = 'Scroll window upwards in the buffer' })

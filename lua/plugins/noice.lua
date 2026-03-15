@@ -1,4 +1,4 @@
--- lazy.nvim
+-- UI replacement for messages, cmdline and popupmenu
 return {
   'folke/noice.nvim',
   event = 'VeryLazy',

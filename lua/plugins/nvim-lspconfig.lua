@@ -42,7 +42,7 @@ return {
           require('conform').format { async = true, lsp_format = 'fallback' }
         end, opts)
         vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, opts)
-        vim.keymap.set('n', 'gl', vim.diagnostic.open_float)
+        vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
       end,
     })
 
