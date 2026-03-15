@@ -8,7 +8,17 @@
 
 **Prerequisites**
 
-- Neovim 0.11+
+| Requirement | Purpose | Install |
+|---|---|---|
+| [Neovim 0.11+](https://github.com/neovim/neovim/releases) | Editor | See official docs |
+| [git](https://git-scm.com/) | Plugin manager bootstrap | `apt install git` |
+| [fzf](https://github.com/junegunn/fzf) | Fuzzy finder (fzf-lua) | `apt install fzf` |
+| [ripgrep](https://github.com/BurntSushi/ripgrep) | Live grep search | `apt install ripgrep` |
+| [Node.js](https://nodejs.org/) | LSP servers (TypeScript, YAML, JSON, Dockerfile…) | `apt install nodejs` |
+| [Go](https://go.dev/) | LSP + tools for Go files (`gopls`, `goimports`) | Optional |
+| [Nerd Font](https://www.nerdfonts.com/) | Icons in UI | Optional, recommended |
+
+> `fd` is optional but speeds up file search: `apt install fd-find`
 
 Steps:
 
@@ -22,4 +32,4 @@ git clone git@github.com:cassiobotaro/nvim.git ~/.config/nvim
 gh repo clone cassiobotaro/nvim ~/.config/nvim
 ```
 
-2. Open Neovim. You should see a _"Downloading packer.."_ and then _"plugins installed"_ message in the first run
+2. Open Neovim. On the first run [lazy.nvim](https://github.com/folke/lazy.nvim) will bootstrap itself and install all plugins automatically.
