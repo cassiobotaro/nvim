@@ -35,13 +35,13 @@ return {
         vim.keymap.set('n', 'go', fzf.lsp_typedefs, opts)
         vim.keymap.set('n', 'gr', fzf.lsp_references, opts)
         vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
-        vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
+        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
         vim.keymap.set('n', 'gy', fzf.lsp_document_symbols, opts)
         vim.keymap.set('n', 'ws', fzf.lsp_live_workspace_symbols, opts)
-        vim.keymap.set({ 'n', 'x' }, '<F3>', function()
+        vim.keymap.set({ 'n', 'x' }, '<leader>f', function()
           require('conform').format { async = true, lsp_format = 'fallback' }
         end, opts)
-        vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, opts)
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
         vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
       end,
     })
