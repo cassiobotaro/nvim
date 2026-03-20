@@ -28,21 +28,19 @@ return {
         local opts = { buffer = event.buf }
 
         local fzf = require 'fzf-lua'
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
         vim.keymap.set('n', 'gd', fzf.lsp_definitions, opts)
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
         vim.keymap.set('n', 'go', fzf.lsp_typedefs, opts)
-        vim.keymap.set('n', 'gr', fzf.lsp_references, opts)
+        vim.keymap.set('n', 'grr', fzf.lsp_references, opts)
         vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
-        vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
         vim.keymap.set('n', 'gy', fzf.lsp_document_symbols, opts)
-        vim.keymap.set('n', 'ws', fzf.lsp_live_workspace_symbols, opts)
-        vim.keymap.set({ 'n', 'x' }, '<F3>', function()
+        vim.keymap.set('n', 'gW', fzf.lsp_live_workspace_symbols, opts)
+        vim.keymap.set({ 'n', 'x' }, '<leader>f', function()
           require('conform').format { async = true, lsp_format = 'fallback' }
         end, opts)
-        vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, opts)
         vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
+        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
       end,
     })
 
