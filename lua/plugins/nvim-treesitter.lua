@@ -1,10 +1,11 @@
 -- tree-sitter is a parser generator tool and an incremental parsing library.
 return {
   'nvim-treesitter/nvim-treesitter',
+  branch = 'master',
   build = ':TSUpdate',
-  dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
+  dependencies = { { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'master' } },
   config = function()
-    require('nvim-treesitter').setup {
+    require('nvim-treesitter.configs').setup {
 
       ensure_installed = {
         'bash',
@@ -17,7 +18,6 @@ return {
         'gotmpl',
         'gowork',
         'javascript',
-        'javascriptreact',
         'json',
         'lua',
         'make',
@@ -27,8 +27,8 @@ return {
         'regex',
         'terraform',
         'toml',
+        'tsx',
         'typescript',
-        'typescriptreact',
         'vim',
         'vimdoc',
         'yaml',

@@ -6,7 +6,6 @@ return {
     { 'nvim-lua/plenary.nvim', branch = 'master' },
   },
   branch = 'main',
-  config = true,
   enabled = vim.g.copilot_enabled,
   event = 'VeryLazy',
   opts = {

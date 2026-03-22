@@ -9,7 +9,7 @@ vim.opt.undofile = true -- automatically saves undo history
 vim.opt.clipboard = 'unnamedplus' -- use system clipboard
 vim.opt.signcolumn = 'yes' -- show sign columns (even blank)
 vim.opt.shortmess:append 'I' -- don't show nvim intro message
-vim.opt.showmode = false -- show mode in last line
+vim.opt.showmode = false -- don't show mode in last line
 vim.opt.showbreak = '↪' -- string to put at the start of lines that have been wrapped
 vim.opt.ignorecase = true -- ignore case in search patterns
 vim.opt.smartcase = true -- override ignorecase when search pattern has uppercase
