@@ -6,7 +6,6 @@ return {
   dependencies = { { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'master' } },
   config = function()
     require('nvim-treesitter.configs').setup {
-
       ensure_installed = {
         'bash',
         'c',
@@ -33,6 +32,11 @@ return {
         'vimdoc',
         'yaml',
       },
+
+      modules = {},
+      sync_install = false,
+      ignore_install = {},
+      auto_install = false,
 
       highlight = { enable = true },
       indent = { enable = true },
