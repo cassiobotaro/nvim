@@ -38,8 +38,6 @@ return {
           require('conform').format { async = true, lsp_format = 'fallback' }
         end, opts)
         vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
-        vim.keymap.set('n', '[d', function() vim.diagnostic.jump { count = -1 } end, opts)
-        vim.keymap.set('n', ']d', function() vim.diagnostic.jump { count = 1 } end, opts)
       end,
     })
 

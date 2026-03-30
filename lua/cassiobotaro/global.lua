@@ -1,7 +1,6 @@
 vim.g.mapleader = ' ' -- space as leader key
 vim.g.maplocalleader = ' ' -- space as leader key
 vim.g.copilot_enabled = true -- enable copilot
-vim.g.python3_host_prog = 'python' -- set python host
 
 -- register filetypes not built-in to Neovim
 vim.filetype.add {
