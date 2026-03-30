@@ -10,7 +10,7 @@
 
 | Requirement | Purpose | Install |
 |---|---|---|
-| [Neovim 0.11+](https://github.com/neovim/neovim/releases) | Editor | See official docs |
+| [Neovim 0.12+](https://github.com/neovim/neovim/releases) | Editor | See official docs |
 | [git](https://git-scm.com/) | Plugin manager bootstrap | `apt install git` |
 | [fzf](https://github.com/junegunn/fzf) | Fuzzy finder (fzf-lua) | `apt install fzf` |
 | [ripgrep](https://github.com/BurntSushi/ripgrep) | Live grep search | `apt install ripgrep` |
