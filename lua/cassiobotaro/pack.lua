@@ -21,6 +21,10 @@ vim.api.nvim_create_autocmd('PackChanged', {
   end,
 })
 
+vim.api.nvim_create_user_command('PackUpdate', function()
+  vim.pack.update()
+end, { desc = 'Update all plugins' })
+
 vim.pack.add {
   -- icons
   gh 'echasnovski/mini.icons',
