@@ -6,7 +6,17 @@ end
 vim.api.nvim_create_autocmd('PackChanged', {
   callback = function(ev)
     if ev.data.spec.name == 'CopilotChat.nvim' and (ev.data.kind == 'install' or ev.data.kind == 'update') then
-      vim.system({ 'make', 'tiktoken' }, { cwd = ev.data.path })
+      vim.system({ 'make', 'tiktoken' }, { cwd = ev.data.path }, function(obj)
+        if obj.code ~= 0 then
+          local msg = string.format('CopilotChat.nvim: "make tiktoken" failed with exit code %d', obj.code or -1)
+          if obj.stderr and #obj.stderr > 0 then
+            msg = msg .. (': ' .. obj.stderr)
+          end
+          vim.schedule(function()
+            vim.notify(msg, vim.log.levels.ERROR)
+          end)
+        end
+      end)
     end
   end,
 })
