@@ -1,7 +1,4 @@
 -- statusline
-return {
-  'nvim-lualine/lualine.nvim',
-  opts = {
-    options = { section_separators = '', component_separators = '|', theme = 'onedark' },
-  },
+require('lualine').setup {
+  options = { section_separators = '', component_separators = '|', theme = 'onedark' },
 }
