@@ -3,7 +3,6 @@ return {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
     event = 'InsertEnter',
-    enabled = vim.g.copilot_enabled,
     build = ':Copilot auth',
     opts = {
       suggestion = {
@@ -15,10 +14,6 @@ return {
         help = true,
         yaml = true,
       },
-    },
-    keys = {
-      { '<leader>cd', ':Copilot disable<CR>', silent = true },
-      { '<leader>ce', ':Copilot enable<CR>', silent = true },
     },
   },
 }
