@@ -4,6 +4,6 @@ return {
   version = '*',
   opts = {
     direction = 'float',
-    open_mapping = [[<c-t>]],
+    open_mapping = [[<c-\>]],
   },
 }

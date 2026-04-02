@@ -67,6 +67,7 @@ return {
       'stylua',
       'yaml-language-server',
       'typescript-language-server',
+      'phpactor',
     }
     local registry = require 'mason-registry'
     for _, pkg in pairs(packages) do
@@ -85,6 +86,7 @@ return {
       'ruff',
       'yamlls',
       'ts_ls',
+      'phpactor',
     }
 
     vim.diagnostic.config {
