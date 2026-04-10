@@ -10,9 +10,9 @@ api.nvim_create_autocmd('FileType', {
 
 -- reopens the last cursor position
 api.nvim_create_autocmd('BufReadPost', {
-  callback = function()
-    local row, col = unpack(api.nvim_buf_get_mark(0, '"'))
-    if row > 0 and row <= api.nvim_buf_line_count(0) then
+  callback = function(args)
+    local row, col = table.unpack(api.nvim_buf_get_mark(args.buf, '"'))
+    if row > 0 and row <= api.nvim_buf_line_count(args.buf) then
       api.nvim_win_set_cursor(0, { row, col })
     end
   end,
@@ -20,12 +20,23 @@ api.nvim_create_autocmd('BufReadPost', {
 
 -- remove trailing whitespace on save
 api.nvim_create_autocmd('BufWritePre', {
-  callback = function()
-    if not vim.bo.modifiable or vim.bo.buftype ~= '' then
+  callback = function(args)
+    if not vim.bo[args.buf].modifiable or vim.bo[args.buf].buftype ~= '' then
       return
     end
     local cursor = api.nvim_win_get_cursor(0)
-    vim.cmd ':%s/\\s\\+$//e'
+    local lines = api.nvim_buf_get_lines(args.buf, 0, -1, false)
+    local changed = false
+    for i, line in ipairs(lines) do
+      local stripped = line:gsub('%s+$', '')
+      if stripped ~= line then
+        lines[i] = stripped
+        changed = true
+      end
+    end
+    if changed then
+      api.nvim_buf_set_lines(args.buf, 0, -1, false, lines)
+    end
     api.nvim_win_set_cursor(0, cursor)
   end,
 })
@@ -42,7 +53,7 @@ api.nvim_create_autocmd('TextYankPost', {
 -- resize neovim split when terminal is resized
 api.nvim_create_autocmd('VimResized', {
   callback = function()
-    vim.cmd 'wincmd ='
+    vim.cmd.wincmd '='
   end,
 })
 

@@ -70,11 +70,13 @@ return {
       'phpactor',
     }
     local registry = require 'mason-registry'
-    for _, pkg in pairs(packages) do
-      if not registry.is_installed(pkg) then
-        registry.get_package(pkg):install()
+    vim.schedule(function()
+      for _, pkg in pairs(packages) do
+        if not registry.is_installed(pkg) then
+          registry.get_package(pkg):install()
+        end
       end
-    end
+    end)
 
     vim.lsp.enable {
       'bashls',
