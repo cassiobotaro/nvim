@@ -11,7 +11,7 @@ api.nvim_create_autocmd('FileType', {
 -- reopens the last cursor position
 api.nvim_create_autocmd('BufReadPost', {
   callback = function(args)
-    local row, col = table.unpack(api.nvim_buf_get_mark(args.buf, '"'))
+    local row, col = (table.unpack or unpack)(api.nvim_buf_get_mark(args.buf, '"'))
     if row > 0 and row <= api.nvim_buf_line_count(args.buf) then
       api.nvim_win_set_cursor(0, { row, col })
     end
