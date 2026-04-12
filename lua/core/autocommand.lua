@@ -57,6 +57,12 @@ api.nvim_create_autocmd('VimResized', {
   end,
 })
 
+-- update all plugins
+api.nvim_create_user_command('PackUpdate', function()
+  vim.notify('Checking for plugin updates…', vim.log.levels.INFO)
+  vim.pack.update()
+end, { desc = 'Update all plugins' })
+
 -- Automatically open fzf-lua if not explicitly opening a file
 api.nvim_create_autocmd('VimEnter', {
   callback = function()

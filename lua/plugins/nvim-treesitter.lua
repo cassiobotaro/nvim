@@ -1,43 +1,39 @@
 -- tree-sitter is a parser generator tool and an incremental parsing library.
-return {
-  'nvim-treesitter/nvim-treesitter',
-  lazy = false,
-  build = ':TSUpdate',
-  config = function()
-    local ensureInstalled = {
-        'bash',
-        'c',
-        'diff',
-        'dockerfile',
-        'go',
-        'gomod',
-        'gosum',
-        'gotmpl',
-        'gowork',
-        'html',
-        'javascript',
-        'json',
-        'lua',
-        'make',
-        'markdown',
-        'markdown_inline',
-        'python',
-        'php',
-        'regex',
-        'terraform',
-        'toml',
-        'tsx',
-        'typescript',
-        'vim',
-        'vimdoc',
-        'yaml',
-    }
-    local alreadyInstalled = require('nvim-treesitter.config').get_installed()
-    local parsersToInstall = vim.iter(ensureInstalled)
-      :filter(function(parser)
-        return not vim.tbl_contains(alreadyInstalled, parser)
-      end)
-      :totable()
-    require('nvim-treesitter').install(parsersToInstall)
-  end,
+vim.pack.add { 'https://github.com/nvim-treesitter/nvim-treesitter' }
+
+local ensure_installed = {
+  'bash',
+  'c',
+  'diff',
+  'dockerfile',
+  'go',
+  'gomod',
+  'gosum',
+  'gotmpl',
+  'gowork',
+  'html',
+  'javascript',
+  'json',
+  'lua',
+  'make',
+  'markdown',
+  'markdown_inline',
+  'python',
+  'php',
+  'regex',
+  'terraform',
+  'toml',
+  'tsx',
+  'typescript',
+  'vim',
+  'vimdoc',
+  'yaml',
 }
+
+local already_installed = require('nvim-treesitter.config').get_installed()
+local parsers_to_install = vim.iter(ensure_installed)
+  :filter(function(parser)
+    return not vim.tbl_contains(already_installed, parser)
+  end)
+  :totable()
+require('nvim-treesitter').install(parsers_to_install)

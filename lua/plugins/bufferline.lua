@@ -1,7 +1,4 @@
 -- buffer tabs
-return {
-  'akinsho/bufferline.nvim',
-  event = 'VeryLazy',
-  dependencies = 'echasnovski/mini.icons',
-  config = true,
-}
+vim.pack.add { 'https://github.com/akinsho/bufferline.nvim' }
+
+require('bufferline').setup()

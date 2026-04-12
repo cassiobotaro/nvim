@@ -1,5 +1,0 @@
-require 'core.global'
-require 'core.lazy'
-require 'core.option'
-require 'core.remap'
-require 'core.autocommand'

@@ -1,22 +1,19 @@
 -- fast fuzzy finder using the fzf binary (requires fzf installed on the system)
-return {
-  'ibhagwan/fzf-lua',
-  event = 'VeryLazy',
-  dependencies = { 'echasnovski/mini.icons' },
-  config = function()
-    local fzf = require 'fzf-lua'
-    fzf.register_ui_select()
-  end,
-  keys = {
-    { '<leader>?', function() require('fzf-lua').oldfiles() end, desc = 'Find recently opened files' },
-    { '<leader><space>', function() require('fzf-lua').buffers() end, desc = 'Find existing buffers' },
-    { '<leader>/', function() require('fzf-lua').lgrep_curbuf() end, desc = 'Fuzzily search in current buffer' },
-    { '<leader>sf', function() require('fzf-lua').files() end, desc = 'Search Files' },
-    { '<leader>sh', function() require('fzf-lua').help_tags() end, desc = 'Search Help' },
-    { '<leader>sw', function() require('fzf-lua').grep_cword() end, desc = 'Search Current Word' },
-    { '<leader>sg', function() require('fzf-lua').live_grep() end, desc = 'Search by Grep' },
-    { '<leader>sd', function() require('fzf-lua').diagnostics_workspace() end, desc = 'Search Diagnostics' },
-    { '<leader>st', function() require('fzf-lua').git_files() end, desc = 'Search Git Files' },
-    { '<leader>sr', function() require('fzf-lua').registers() end, desc = 'Search Registers' },
-  },
+vim.pack.add {
+  'https://github.com/echasnovski/mini.icons',
+  'https://github.com/ibhagwan/fzf-lua',
 }
+
+local fzf = require 'fzf-lua'
+fzf.register_ui_select()
+
+vim.keymap.set('n', '<leader>?', fzf.oldfiles, { desc = 'Find recently opened files' })
+vim.keymap.set('n', '<leader><space>', fzf.buffers, { desc = 'Find existing buffers' })
+vim.keymap.set('n', '<leader>/', fzf.lgrep_curbuf, { desc = 'Fuzzily search in current buffer' })
+vim.keymap.set('n', '<leader>sf', fzf.files, { desc = 'Search Files' })
+vim.keymap.set('n', '<leader>sh', fzf.help_tags, { desc = 'Search Help' })
+vim.keymap.set('n', '<leader>sw', fzf.grep_cword, { desc = 'Search Current Word' })
+vim.keymap.set('n', '<leader>sg', fzf.live_grep, { desc = 'Search by Grep' })
+vim.keymap.set('n', '<leader>sd', fzf.diagnostics_workspace, { desc = 'Search Diagnostics' })
+vim.keymap.set('n', '<leader>st', fzf.git_files, { desc = 'Search Git Files' })
+vim.keymap.set('n', '<leader>sr', fzf.registers, { desc = 'Search Registers' })

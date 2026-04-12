@@ -1,10 +1,9 @@
 -- git
-return {
-  'NeogitOrg/neogit',
-  dependencies = 'nvim-lua/plenary.nvim',
-  cmd = 'Neogit',
-  keys = {
-    { '<leader>gg', '<cmd>Neogit<cr>', desc = 'Neogit' },
-  },
-  config = true,
+vim.pack.add {
+  'https://github.com/nvim-lua/plenary.nvim',
+  'https://github.com/NeogitOrg/neogit',
 }
+
+require('neogit').setup()
+
+vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'Neogit' })

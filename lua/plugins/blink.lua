@@ -1,30 +1,28 @@
-return {
-  {
-    'saghen/blink.cmp',
-    dependencies = { 'rafamadriz/friendly-snippets', 'fang2hou/blink-copilot' },
-    version = '1.*',
-    opts = {
-      cmdline = { enabled = false },
-      completion = { documentation = { auto_show = true } },
-      sources = {
-        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
-        providers = {
-          copilot = {
-            name = 'copilot',
-            module = 'blink-copilot',
-            score_offset = 100,
-            async = true,
-          },
-          lazydev = {
-            name = 'LazyDev',
-            module = 'lazydev.integrations.blink',
-            -- higher priority than copilot for Neovim API completions
-            score_offset = 150,
-          },
-        },
+vim.pack.add {
+  'https://github.com/rafamadriz/friendly-snippets',
+  'https://github.com/fang2hou/blink-copilot',
+  'https://github.com/saghen/blink.cmp',
+}
+
+require('blink.cmp').setup {
+  cmdline = { enabled = false },
+  completion = { documentation = { auto_show = true } },
+  sources = {
+    default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+    providers = {
+      copilot = {
+        name = 'copilot',
+        module = 'blink-copilot',
+        score_offset = 100,
+        async = true,
       },
-      fuzzy = { implementation = 'prefer_rust' },
+      lazydev = {
+        name = 'LazyDev',
+        module = 'lazydev.integrations.blink',
+        -- higher priority than copilot for Neovim API completions
+        score_offset = 150,
+      },
     },
-    opts_extend = { 'sources.default' },
   },
+  fuzzy = { implementation = 'prefer_rust' },
 }
