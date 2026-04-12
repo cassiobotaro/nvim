@@ -1,1 +1,1 @@
-require 'cassiobotaro'
+require 'core'
