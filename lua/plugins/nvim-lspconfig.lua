@@ -58,7 +58,6 @@ local packages = {
   'stylua',
   'yaml-language-server',
   'typescript-language-server',
-  'phpactor',
 }
 local registry = require 'mason-registry'
 vim.schedule(function()
@@ -82,7 +81,6 @@ vim.lsp.enable {
   'ruff',
   'yamlls',
   'ts_ls',
-  'phpactor',
 }
 
 vim.diagnostic.config {

@@ -19,7 +19,6 @@ local ensure_installed = {
   'markdown',
   'markdown_inline',
   'python',
-  'php',
   'regex',
   'terraform',
   'toml',
