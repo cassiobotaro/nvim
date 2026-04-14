@@ -10,7 +10,7 @@ require('gitsigns').setup {
     map('n', ']h', function() gs.nav_hunk 'next' end, 'Next hunk')
     map('n', '[h', function() gs.nav_hunk 'prev' end, 'Previous hunk')
     map('n', '<leader>gs', gs.stage_hunk, 'Stage hunk')
-    map('n', '<leader>gu', gs.stage_hunk, 'Unstage hunk')
+    map('n', '<leader>gu', gs.undo_stage_hunk, 'Unstage hunk')
     map('n', '<leader>gp', gs.preview_hunk, 'Preview hunk')
     map('n', '<leader>gb', gs.blame_line, 'Blame line')
     map('n', '<leader>gd', gs.diffthis, 'Diff this')
