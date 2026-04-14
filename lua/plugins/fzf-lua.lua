@@ -1,8 +1,5 @@
 -- fast fuzzy finder using the fzf binary (requires fzf installed on the system)
-vim.pack.add {
-  'https://github.com/echasnovski/mini.icons',
-  'https://github.com/ibhagwan/fzf-lua',
-}
+vim.pack.add { 'https://github.com/ibhagwan/fzf-lua' }
 
 local fzf = require 'fzf-lua'
 fzf.register_ui_select()

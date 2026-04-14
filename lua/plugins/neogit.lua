@@ -4,6 +4,6 @@ vim.pack.add {
   'https://github.com/NeogitOrg/neogit',
 }
 
-require('neogit').setup()
+require('neogit').setup {}
 
 vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'Neogit' })
