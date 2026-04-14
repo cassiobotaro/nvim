@@ -2,6 +2,7 @@ local api = vim.api
 
 -- don't auto comment new line
 api.nvim_create_autocmd('FileType', {
+  group = api.nvim_create_augroup('no-auto-comment', { clear = true }),
   pattern = '*',
   callback = function()
     vim.opt_local.formatoptions:remove { 'c', 'r', 'o' }
@@ -10,8 +11,9 @@ api.nvim_create_autocmd('FileType', {
 
 -- reopens the last cursor position
 api.nvim_create_autocmd('BufReadPost', {
+  group = api.nvim_create_augroup('restore-cursor', { clear = true }),
   callback = function(args)
-    local row, col = (table.unpack or unpack)(api.nvim_buf_get_mark(args.buf, '"'))
+    local row, col = table.unpack(api.nvim_buf_get_mark(args.buf, '"'))
     if row > 0 and row <= api.nvim_buf_line_count(args.buf) then
       api.nvim_win_set_cursor(0, { row, col })
     end
@@ -20,6 +22,7 @@ api.nvim_create_autocmd('BufReadPost', {
 
 -- remove trailing whitespace on save
 api.nvim_create_autocmd('BufWritePre', {
+  group = api.nvim_create_augroup('trim-whitespace', { clear = true }),
   callback = function(args)
     if not vim.bo[args.buf].modifiable or vim.bo[args.buf].buftype ~= '' then
       return
@@ -52,6 +55,7 @@ api.nvim_create_autocmd('TextYankPost', {
 
 -- resize neovim split when terminal is resized
 api.nvim_create_autocmd('VimResized', {
+  group = api.nvim_create_augroup('auto-resize', { clear = true }),
   callback = function()
     vim.cmd.wincmd '='
   end,
@@ -65,6 +69,7 @@ end, { desc = 'Update all plugins' })
 
 -- Automatically open fzf-lua if not explicitly opening a file
 api.nvim_create_autocmd('VimEnter', {
+  group = api.nvim_create_augroup('fzf-on-enter', { clear = true }),
   callback = function()
     if vim.fn.argc() == 0 then
       vim.schedule(function()
