@@ -13,7 +13,7 @@ api.nvim_create_autocmd('FileType', {
 api.nvim_create_autocmd('BufReadPost', {
   group = api.nvim_create_augroup('restore-cursor', { clear = true }),
   callback = function(args)
-    local row, col = table.unpack(api.nvim_buf_get_mark(args.buf, '"'))
+    local row, col = unpack(api.nvim_buf_get_mark(args.buf, '"'))
     if row > 0 and row <= api.nvim_buf_line_count(args.buf) then
       api.nvim_win_set_cursor(0, { row, col })
     end
