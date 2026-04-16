@@ -61,11 +61,29 @@ api.nvim_create_autocmd('VimResized', {
   end,
 })
 
--- update all plugins
+-- update all registered plugins
 api.nvim_create_user_command('PackUpdate', function()
-  vim.notify('Checking for plugin updates…', vim.log.levels.INFO)
+  vim.notify('Updating plugins… (use :w in the buffer to confirm)', vim.log.levels.INFO)
   vim.pack.update()
 end, { desc = 'Update all plugins' })
+
+-- remove plugins installed on disk but no longer registered
+api.nvim_create_user_command('PackClean', function()
+  local unused = {}
+  for _, pkg in ipairs(vim.pack.get()) do
+    if not pkg.active then
+      table.insert(unused, pkg.spec.name)
+    end
+  end
+
+  if #unused == 0 then
+    vim.notify('No unused plugins found', vim.log.levels.INFO)
+    return
+  end
+
+  vim.notify('Removing unused plugins: ' .. table.concat(unused, ', '), vim.log.levels.INFO)
+  vim.pack.del(unused)
+end, { desc = 'Remove unused plugins from disk' })
 
 -- Automatically open fzf-lua if not explicitly opening a file
 api.nvim_create_autocmd('VimEnter', {

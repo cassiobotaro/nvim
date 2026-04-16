@@ -1,7 +1,7 @@
 vim.pack.add {
   'https://github.com/rafamadriz/friendly-snippets',
   'https://github.com/fang2hou/blink-copilot',
-  'https://github.com/saghen/blink.cmp',
+  { src = 'https://github.com/saghen/blink.cmp', version = 'v1' },
 }
 
 require('blink.cmp').setup {
