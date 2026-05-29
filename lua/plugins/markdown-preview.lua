@@ -1,5 +1,3 @@
-vim.pack.add { 'https://github.com/iamcco/markdown-preview.nvim' }
-
 vim.api.nvim_create_autocmd('PackChanged', {
   desc = 'Build step for markdown-preview.nvim',
   callback = function(args)
@@ -15,3 +13,5 @@ vim.api.nvim_create_autocmd('PackChanged', {
     end
   end,
 })
+
+vim.pack.add { 'https://github.com/iamcco/markdown-preview.nvim' }
