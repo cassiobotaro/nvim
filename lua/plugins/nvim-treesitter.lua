@@ -36,3 +36,16 @@ local parsers_to_install = vim.iter(ensure_installed)
   end)
   :totable()
 require('nvim-treesitter').install(parsers_to_install)
+
+-- the main branch only installs parsers; highlight and indent must be started
+-- per buffer (the bundled ftplugins only do this for lua/markdown/help/query)
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('treesitter-start', { clear = true }),
+  callback = function(args)
+    local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+    if lang and pcall(vim.treesitter.language.add, lang) then
+      vim.treesitter.start(args.buf, lang)
+      vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
+  end,
+})

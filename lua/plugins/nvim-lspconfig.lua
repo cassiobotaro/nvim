@@ -15,20 +15,22 @@ require('lazydev').setup {
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
-    local opts = { buffer = event.buf }
+    local function map(keys, fn, desc)
+      vim.keymap.set('n', keys, fn, { buffer = event.buf, desc = desc })
+    end
 
     local fzf = require 'fzf-lua'
-    vim.keymap.set('n', 'gd', fzf.lsp_definitions, opts)
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'go', fzf.lsp_typedefs, opts)
-    vim.keymap.set('n', 'grr', fzf.lsp_references, opts)
-    vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', 'gy', fzf.lsp_document_symbols, opts)
-    vim.keymap.set('n', 'gW', fzf.lsp_live_workspace_symbols, opts)
+    map('gd', fzf.lsp_definitions, 'Go to definition')
+    map('gD', vim.lsp.buf.declaration, 'Go to declaration')
+    map('go', fzf.lsp_typedefs, 'Go to type definition')
+    map('grr', fzf.lsp_references, 'List references')
+    map('gs', vim.lsp.buf.signature_help, 'Signature help')
+    map('gy', fzf.lsp_document_symbols, 'Document symbols')
+    map('gW', fzf.lsp_live_workspace_symbols, 'Workspace symbols')
+    map('gl', vim.diagnostic.open_float, 'Show line diagnostics')
     vim.keymap.set({ 'n', 'x' }, '<leader>f', function()
       require('conform').format { async = true, lsp_format = 'fallback' }
-    end, opts)
-    vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
+    end, { buffer = event.buf, desc = 'Format buffer' })
   end,
 })
 
