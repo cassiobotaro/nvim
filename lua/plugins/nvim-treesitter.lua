@@ -43,7 +43,13 @@ vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('treesitter-start', { clear = true }),
   callback = function(args)
     local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
-    if lang and pcall(vim.treesitter.language.add, lang) then
+    if not lang then
+      return
+    end
+    -- language.add returns false (without erroring) when no parser exists, so
+    -- the pcall guard alone is not enough — check its return value too
+    local ok, loaded = pcall(vim.treesitter.language.add, lang)
+    if ok and loaded then
       vim.treesitter.start(args.buf, lang)
       vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
     end
