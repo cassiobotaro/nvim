@@ -9,10 +9,6 @@
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'v1'"
     },
-    "bufferline.nvim": {
-      "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
-      "src": "https://github.com/akinsho/bufferline.nvim"
-    },
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -52,6 +48,10 @@
     "mini.icons": {
       "rev": "d48ad47359218d2b019034f95f601b3861180885",
       "src": "https://github.com/echasnovski/mini.icons"
+    },
+    "mini.tabline": {
+      "rev": "7d4a8a79f37361ad287d27bda0f37fc53f924a50",
+      "src": "https://github.com/echasnovski/mini.tabline"
     },
     "neogit": {
       "rev": "5d1b65d6215928e941e1a6a4e76e02fd45ada31f",
