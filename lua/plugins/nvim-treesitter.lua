@@ -20,7 +20,6 @@ local ensure_installed = {
   'markdown_inline',
   'python',
   'regex',
-  'terraform',
   'toml',
   'tsx',
   'typescript',
