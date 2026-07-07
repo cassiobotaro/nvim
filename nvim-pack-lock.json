@@ -89,6 +89,10 @@
       "rev": "f422cb5c6855f150e2ddcfaf44e7157b98b34f6a",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
+    "schemastore.nvim": {
+      "rev": "19adbfb1c4d4049b691be0d840936b109de0f5ea",
+      "src": "https://github.com/b0o/schemastore.nvim"
+    },
     "toggleterm.nvim": {
       "rev": "9a88eae817ef395952e08650b3283726786fb5fb",
       "src": "https://github.com/akinsho/toggleterm.nvim"

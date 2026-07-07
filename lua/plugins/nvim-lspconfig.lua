@@ -2,6 +2,7 @@ vim.pack.add {
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/mason-org/mason.nvim',
   'https://github.com/folke/lazydev.nvim',
+  'https://github.com/b0o/schemastore.nvim', -- JSON/YAML schemas from SchemaStore for jsonls/yamlls
 }
 
 require('lazydev').setup {
