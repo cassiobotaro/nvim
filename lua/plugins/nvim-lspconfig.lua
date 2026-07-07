@@ -24,6 +24,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('gD', vim.lsp.buf.declaration, 'Go to declaration')
     map('go', fzf.lsp_typedefs, 'Go to type definition')
     map('grr', fzf.lsp_references, 'List references')
+    map('gri', fzf.lsp_implementations, 'Go to implementation')
     vim.keymap.set({ 'n', 'x' }, 'gra', fzf.lsp_code_actions, { buffer = event.buf, desc = 'Code action' })
     map('gs', vim.lsp.buf.signature_help, 'Signature help')
     map('gy', fzf.lsp_document_symbols, 'Document symbols')
