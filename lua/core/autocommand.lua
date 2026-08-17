@@ -13,6 +13,11 @@ api.nvim_create_autocmd('FileType', {
 api.nvim_create_autocmd('BufReadPost', {
   group = api.nvim_create_augroup('restore-cursor', { clear = true }),
   callback = function(args)
+    -- BufReadPost also fires for buffers read into the background (:bufdo,
+    -- bufload()), where the current window shows an unrelated buffer
+    if args.buf ~= api.nvim_get_current_buf() then
+      return
+    end
     local row, col = unpack(api.nvim_buf_get_mark(args.buf, '"'))
     if row > 0 and row <= api.nvim_buf_line_count(args.buf) then
       api.nvim_win_set_cursor(0, { row, col })
