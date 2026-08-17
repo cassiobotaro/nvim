@@ -5,7 +5,7 @@ require('conform').setup {
     lua = { 'stylua' },
     python = { 'ruff_fix', 'ruff_organize_imports', 'ruff_format' },
     go = { 'goimports' },
-    bash = { 'shfmt' },
+    sh = { 'shfmt' },
     javascript = { 'prettier' },
     typescript = { 'prettier' },
     javascriptreact = { 'prettier' },
