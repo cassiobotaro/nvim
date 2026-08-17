@@ -1,9 +1,10 @@
 -- tree-sitter is a parser generator tool and an incremental parsing library.
 vim.pack.add { 'https://github.com/nvim-treesitter/nvim-treesitter' }
 
+-- parsers neovim already ships (c, lua, markdown, markdown_inline, query, vim,
+-- vimdoc) are left out: they are reported as installed and never downloaded
 local ensure_installed = {
   'bash',
-  'c',
   'diff',
   'dockerfile',
   'go',
@@ -14,17 +15,12 @@ local ensure_installed = {
   'html',
   'javascript',
   'json',
-  'lua',
   'make',
-  'markdown',
-  'markdown_inline',
   'python',
   'regex',
   'toml',
   'tsx',
   'typescript',
-  'vim',
-  'vimdoc',
   'yaml',
 }
 
