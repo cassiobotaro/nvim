@@ -91,6 +91,9 @@ vim.lsp.enable {
 vim.diagnostic.config {
   severity_sort = true,
   virtual_text = false,
+  -- show the full message below the cursor line only, instead of trailing
+  -- virtual text on every diagnostic
+  virtual_lines = { current_line = true },
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = '✘',
