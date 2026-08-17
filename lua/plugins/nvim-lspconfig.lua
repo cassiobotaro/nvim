@@ -22,7 +22,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     local fzf = require 'fzf-lua'
     map('gd', fzf.lsp_definitions, 'Go to definition')
-    map('gD', vim.lsp.buf.declaration, 'Go to declaration')
     map('go', fzf.lsp_typedefs, 'Go to type definition')
     map('grr', fzf.lsp_references, 'List references')
     map('gri', fzf.lsp_implementations, 'Go to implementation')
@@ -30,7 +29,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('gs', vim.lsp.buf.signature_help, 'Signature help')
     map('gy', fzf.lsp_document_symbols, 'Document symbols')
     map('gW', fzf.lsp_live_workspace_symbols, 'Workspace symbols')
-    map('gl', vim.diagnostic.open_float, 'Show line diagnostics')
     vim.keymap.set({ 'n', 'x' }, '<leader>f', function()
       require('conform').format { async = true, lsp_format = 'fallback' }
     end, { buffer = event.buf, desc = 'Format buffer' })
