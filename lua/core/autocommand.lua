@@ -24,7 +24,9 @@ api.nvim_create_autocmd('BufReadPost', {
 api.nvim_create_autocmd('BufWritePre', {
   group = api.nvim_create_augroup('trim-whitespace', { clear = true }),
   callback = function(args)
-    if not vim.bo[args.buf].modifiable or vim.bo[args.buf].buftype ~= '' then
+    local bo = vim.bo[args.buf]
+    -- skip markdown: two trailing spaces there are a hard line break
+    if not bo.modifiable or bo.buftype ~= '' or bo.filetype == 'markdown' then
       return
     end
     local cursor = api.nvim_win_get_cursor(0)
