@@ -22,7 +22,6 @@ vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- use neovim built-in tree
 vim.opt.foldlevel = 99 -- set fold level to 99 (so that all folds are open by default)
 vim.opt.foldlevelstart = 99 -- start editing with all folds open
 vim.opt.winborder = 'rounded' -- default border for all floating windows
-vim.opt.completeopt:append 'popup' -- show completion item docs in a floating popup
 vim.opt.confirm = true -- ask to save changes instead of failing commands like :q on modified buffers
 
 -- experimental redesign of the messages and cmdline UI (:h ui2);
