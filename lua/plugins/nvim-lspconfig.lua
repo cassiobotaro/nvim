@@ -68,7 +68,9 @@ vim.schedule(function()
     for _, pkg in pairs(packages) do
       if not registry.is_installed(pkg) then
         local ok, p = pcall(registry.get_package, pkg)
-        if ok then p:install() end
+        if ok then
+          p:install()
+        end
       end
     end
   end)
