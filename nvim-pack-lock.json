@@ -53,10 +53,6 @@
       "rev": "98faae31e9be1cc054ae63485e58ceb185efcad0",
       "src": "https://github.com/echasnovski/mini.icons"
     },
-    "mini.pairs": {
-      "rev": "b1c5a726921b7a8c9321e9a7a208aa0571de5810",
-      "src": "https://github.com/echasnovski/mini.pairs"
-    },
     "mini.tabline": {
       "rev": "525b27e98de7cd2a6012d99f45b4fc10676e00e5",
       "src": "https://github.com/echasnovski/mini.tabline"
