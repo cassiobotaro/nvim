@@ -48,9 +48,12 @@ require('mason').setup {
 -- installing linters/lsp/formatters
 local packages = {
   'bash-language-server',
+  'css-lsp',
   'dockerfile-language-server',
+  'eslint-lsp',
   'goimports',
   'gopls',
+  'html-lsp',
   'json-lsp',
   'lua-language-server',
   'prettier',
@@ -78,8 +81,11 @@ end)
 
 vim.lsp.enable {
   'bashls',
+  'cssls',
   'dockerls',
+  'eslint',
   'gopls',
+  'html',
   'jsonls',
   'lua_ls',
   'pyright',

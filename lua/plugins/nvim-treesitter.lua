@@ -5,6 +5,7 @@ vim.pack.add { 'https://github.com/nvim-treesitter/nvim-treesitter' }
 -- vimdoc) are left out: they are reported as installed and never downloaded
 local ensure_installed = {
   'bash',
+  'css',
   'diff',
   'dockerfile',
   'go',
@@ -14,6 +15,7 @@ local ensure_installed = {
   'gowork',
   'html',
   'javascript',
+  'jsdoc',
   'json',
   'make',
   'python',
@@ -32,6 +34,10 @@ local parsers_to_install = vim
   end)
   :totable()
 require('nvim-treesitter').install(parsers_to_install)
+
+-- nvim maps tsconfig.json/.eslintrc/.babelrc & friends to the jsonc filetype,
+-- for which no parser exists on the main branch -- reuse the json one
+vim.treesitter.language.register('json', 'jsonc')
 
 -- the main branch only installs parsers; highlight and indent must be started
 -- per buffer (the bundled ftplugins only do this for lua/markdown/help/query)
