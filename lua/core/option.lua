@@ -26,4 +26,10 @@ vim.opt.confirm = true -- ask to save changes instead of failing commands like :
 
 -- experimental redesign of the messages and cmdline UI (:h ui2);
 -- shows messages in the cmdline area without "Press ENTER" prompts
-require('vim._core.ui2').enable {}
+-- private API (already renamed once, from vim._extui); don't let a rename break boot
+local ok, ui2 = pcall(require, 'vim._core.ui2')
+if ok then
+  ui2.enable {}
+else
+  vim.notify('vim._core.ui2 not found; the messages UI fell back to the default', vim.log.levels.WARN)
+end
