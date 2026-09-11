@@ -35,6 +35,17 @@ local parsers_to_install = vim
   :totable()
 require('nvim-treesitter').install(parsers_to_install)
 
+-- :PackUpdate bumps the parser revisions pinned by the plugin (and its
+-- queries) but leaves the compiled parsers on disk untouched; keep them in sync
+vim.api.nvim_create_autocmd('PackChanged', {
+  group = vim.api.nvim_create_augroup('treesitter-update-parsers', { clear = true }),
+  callback = function(ev)
+    if ev.data.spec.name == 'nvim-treesitter' and ev.data.kind == 'update' then
+      require('nvim-treesitter').update()
+    end
+  end,
+})
+
 -- nvim maps tsconfig.json/.eslintrc/.babelrc & friends to the jsonc filetype,
 -- for which no parser exists on the main branch -- reuse the json one
 vim.treesitter.language.register('json', 'jsonc')
