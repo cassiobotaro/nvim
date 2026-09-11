@@ -11,7 +11,6 @@ local ensure_installed = {
   'go',
   'gomod',
   'gosum',
-  'gotmpl',
   'gowork',
   'html',
   'javascript',
