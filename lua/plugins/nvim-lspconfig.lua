@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     local fzf = require 'fzf-lua'
     map('gd', fzf.lsp_definitions, 'Go to definition')
-    map('go', fzf.lsp_typedefs, 'Go to type definition')
+    map('grt', fzf.lsp_typedefs, 'Go to type definition')
     map('grr', fzf.lsp_references, 'List references')
     map('gri', fzf.lsp_implementations, 'Go to implementation')
     vim.keymap.set({ 'n', 'x' }, 'gra', fzf.lsp_code_actions, { buffer = event.buf, desc = 'Code action' })
