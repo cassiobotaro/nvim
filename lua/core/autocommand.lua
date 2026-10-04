@@ -96,7 +96,14 @@ end, { desc = 'Remove unused plugins from disk' })
 api.nvim_create_autocmd('VimEnter', {
   group = api.nvim_create_augroup('fzf-on-enter', { clear = true }),
   callback = function()
-    if vim.fn.argc() == 0 then
+    -- skip headless runs (no UI attached) and sessions that already show
+    -- content without a file argument (stdin pipe, `nvim +Man!`, ...)
+    local buf = api.nvim_get_current_buf()
+    local empty = api.nvim_buf_get_name(buf) == ''
+      and vim.bo[buf].buftype == ''
+      and api.nvim_buf_line_count(buf) == 1
+      and api.nvim_buf_get_lines(buf, 0, 1, false)[1] == ''
+    if vim.fn.argc() == 0 and #api.nvim_list_uis() > 0 and empty then
       vim.schedule(function()
         require('fzf-lua').files()
       end)
