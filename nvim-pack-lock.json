@@ -51,11 +51,11 @@
     },
     "mini.icons": {
       "rev": "98faae31e9be1cc054ae63485e58ceb185efcad0",
-      "src": "https://github.com/echasnovski/mini.icons"
+      "src": "https://github.com/nvim-mini/mini.icons"
     },
     "mini.tabline": {
       "rev": "525b27e98de7cd2a6012d99f45b4fc10676e00e5",
-      "src": "https://github.com/echasnovski/mini.tabline"
+      "src": "https://github.com/nvim-mini/mini.tabline"
     },
     "neogit": {
       "rev": "5adc81b26232954cd7a90f158aa7844c18fc3165",
