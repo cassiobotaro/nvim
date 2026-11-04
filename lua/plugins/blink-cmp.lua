@@ -5,14 +5,26 @@ vim.pack.add {
 
 require('blink.cmp').setup {
   cmdline = { enabled = false },
-  completion = { documentation = { auto_show = true } },
+  completion = {
+    documentation = { auto_show = true },
+    -- avoid firing an LLM request on every InsertEnter
+    trigger = { prefetch_on_insert = false },
+  },
   sources = {
-    default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+    default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'minuet' },
     providers = {
+      minuet = {
+        name = 'minuet',
+        module = 'minuet.blink',
+        async = true,
+        -- matches minuet's request_timeout (3s)
+        timeout_ms = 3000,
+        score_offset = 100,
+      },
       lazydev = {
         name = 'LazyDev',
         module = 'lazydev.integrations.blink',
-        -- prioritize Neovim API completions over LSP
+        -- higher priority than minuet for Neovim API completions
         score_offset = 150,
       },
     },
