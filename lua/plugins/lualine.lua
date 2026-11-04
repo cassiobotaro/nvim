@@ -8,5 +8,12 @@ require('lualine').setup {
       'filename',
       { vim.lsp.status, icon = '' },
     },
+    lualine_x = {
+      -- shows provider:model and a spinner while a request is in flight
+      require 'minuet.lualine',
+      'encoding',
+      'fileformat',
+      'filetype',
+    },
   },
 }
