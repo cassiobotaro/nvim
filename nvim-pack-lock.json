@@ -18,7 +18,7 @@
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
-      "rev": "b15de90f4b71ff684372a7e16cfd00bc2d917a94",
+      "rev": "166c03131e6a3528f692dd89f37668d991f17baa",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "grug-far.nvim": {
@@ -58,7 +58,7 @@
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "nvim-lspconfig": {
-      "rev": "7d22e678970d95d8d18494ec389c52b07111c53a",
+      "rev": "76f4cafc49677a34dc8ad8142b773d78ab4a041e",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-surround": {
@@ -95,7 +95,7 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "schemastore.nvim": {
-      "rev": "6ea42941864e28f59368480e071a84b16ae95bb4",
+      "rev": "56b010e943cce0ddd13fa062f447e66e072a6b16",
       "src": "https://github.com/b0o/schemastore.nvim"
     },
     "toggleterm.nvim": {
